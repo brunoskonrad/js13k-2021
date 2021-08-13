@@ -1,0 +1,17 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node tooling/distribute.js",
+    "dev": "node tooling/server.js"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.2",
+    "ejs": "^3.1.6",
+    "esbuild": "^0.12.17",
+    "express": "^4.17.1",
+    "spritesmith": "^3.4.0"
+  }
+}
