@@ -4,6 +4,8 @@ const path = require("path");
 const esbuild = require("esbuild");
 const ejs = require("ejs");
 
+const { minify } = require('html-minifier');
+
 const { createSingleSpritesheetFile } = require("./spritesheet");
 const { getCurrentBranchName } = require("../lib/git");
 
@@ -32,8 +34,12 @@ async function buildHTMLTemplate(destinationFolder, coordinatesMap) {
     externalJavascript: [],
     externalCss: [],
   });
+  const minifiedHtml = minify(html, {
+    removeAttributeQuotes: true,
+    collapseWhitespace: true,
+  })
 
-  fs.writeFileSync(`${destinationFolder}/index.html`, html);
+  fs.writeFileSync(`${destinationFolder}/index.html`, minifiedHtml);
 }
 
 function buildJavascript(destinationFolder) {
