@@ -8,6 +8,7 @@ import { PlayerMovement } from "./systems/PlayerMovement";
 import { Shooting } from "./systems/Shooting";
 import { RenderRect } from "./systems/RenderRect";
 import { ProjectileMovement } from "./systems/ProjectileMovement";
+import { Meteor } from "./entities/Meteor";
 
 export class Game extends GameLoop {
   systems: System[] = [
@@ -49,3 +50,7 @@ export class Game extends GameLoop {
     canvas.context.fillText(`Entities: ${Entities.count}`, 0, 20);
   }
 }
+
+(window as any).spawn = () => {
+  Entities.push(new Meteor());
+};
