@@ -9,7 +9,7 @@ const VELOCITY = 100;
 
 export class PlayerMovement extends System {
   constructor() {
-    super(["Position"]);
+    super(["Position", "Controllable"]);
   }
 
   execute(entity: Entity, dt: number) {

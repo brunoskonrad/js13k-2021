@@ -16,4 +16,8 @@ export class Entities {
       callback(this.objects[key]);
     });
   }
+
+  static get count(): number {
+    return Object.keys(this.objects).length;
+  }
 }

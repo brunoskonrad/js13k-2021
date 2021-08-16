@@ -5,11 +5,11 @@ import { GameLoop } from "./GameLoop";
 import { Input } from "./Input";
 import { System } from "./systems/Base";
 import { PlayerMovement } from "./systems/PlayerMovement";
-import { PlayerShooting } from "./systems/PlayerShooting";
+import { Shooting } from "./systems/Shooting";
 import { RenderRect } from "./systems/RenderRect";
 
 export class Game extends GameLoop {
-  systems: System[] = [new PlayerMovement(), new PlayerShooting()];
+  systems: System[] = [new PlayerMovement(), new Shooting()];
   renderSystems: System[] = [new RenderRect()];
 
   constructor() {
@@ -36,5 +36,7 @@ export class Game extends GameLoop {
         system.process(entity, 0);
       });
     });
+
+    canvas.context.fillText(`Entities: ${Entities.count}`, 0, 20);
   }
 }
