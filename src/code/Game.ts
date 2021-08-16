@@ -9,6 +9,8 @@ import { Shooting } from "./systems/Shooting";
 import { RenderRect } from "./systems/RenderRect";
 import { ProjectileMovement } from "./systems/ProjectileMovement";
 import { Meteor } from "./entities/Meteor";
+import { Entity } from "./entities/Base";
+import { Collider } from "./components/Collider";
 
 export class Game extends GameLoop {
   systems: System[] = [
@@ -28,6 +30,26 @@ export class Game extends GameLoop {
     Entities.push(player);
 
     (window as any).player = player;
+
+    document.addEventListener("entities:push", (event) => {
+      const { detail } = event as any;
+      const entity = detail as Entity;
+
+      const collider = entity.component<Collider>("Collider")
+      if (collider) {
+        // add to physics world
+      }
+    });
+
+    document.addEventListener("entities:pop", (event) => {
+      const { detail } = event as any;
+      const entity = detail as Entity;
+
+      const collider = entity.component<Collider>("Collider")
+      if (collider) {
+        // removes from physics world
+      }
+    });
   }
 
   update(dt: number) {
