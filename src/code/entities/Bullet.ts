@@ -13,7 +13,7 @@ export class Bullet extends Entity {
 
     this.addComponent(new Position(initialPosition.x, initialPosition.y));
     this.addComponent(new Size(8, 3));
-    this.addComponent(new Rect());
+    this.addComponent(new Rect("#f00"));
     this.addComponent(new Projectile());
     this.addComponent(new Direction(direction));
     this.addComponent(new Velocity(200));
