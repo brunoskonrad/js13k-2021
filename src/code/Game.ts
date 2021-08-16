@@ -7,9 +7,14 @@ import { System } from "./systems/Base";
 import { PlayerMovement } from "./systems/PlayerMovement";
 import { Shooting } from "./systems/Shooting";
 import { RenderRect } from "./systems/RenderRect";
+import { ProjectileMovement } from "./systems/ProjectileMovement";
 
 export class Game extends GameLoop {
-  systems: System[] = [new PlayerMovement(), new Shooting()];
+  systems: System[] = [
+    new PlayerMovement(),
+    new Shooting(),
+    new ProjectileMovement(),
+  ];
   renderSystems: System[] = [new RenderRect()];
 
   constructor() {
