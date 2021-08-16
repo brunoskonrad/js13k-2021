@@ -12,7 +12,7 @@ export class PlayerMovement extends System {
     super(["Position"]);
   }
 
-  work(entity: Entity, dt: number) {
+  execute(entity: Entity, dt: number) {
     let direction = vec2(0, 0);
 
     if (Input.isActionPressed("move-right")) {

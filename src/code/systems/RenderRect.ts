@@ -10,7 +10,7 @@ export class RenderRect extends System {
     super(["Position", "Size", "Rect"]);
   }
 
-  work(entity: Entity) {
+  execute(entity: Entity) {
     const position = entity.component<Position>("Position");
     const size = entity.component<Size>("Size");
     
