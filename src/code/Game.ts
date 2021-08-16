@@ -17,7 +17,9 @@ export class Game extends GameLoop {
 
     Input.init();
     canvas.init();
-    Entities.push(new Player());
+
+    const player = new Player();
+    Entities.push(player);
   }
 
   update(dt: number) {
