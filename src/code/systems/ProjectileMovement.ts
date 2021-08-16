@@ -1,6 +1,8 @@
+import { canvas } from "../Canvas";
 import { Direction } from "../components/Direction";
 import { Position } from "../components/Position";
 import { Velocity } from "../components/Velocity";
+import { Entities } from "../Entities";
 import { Entity } from "../entities/Base";
 import { vec2 } from "../Vector2";
 import { System } from "./Base";
@@ -22,5 +24,13 @@ export class ProjectileMovement extends System {
 
     position.x += change.x;
     position.y += change.y;
+
+    const outsideX = position.x < 0 || position.x > canvas.element.width;
+    const outsideY = position.y < 0 || position.y > canvas.element.height;
+    const isOutsideScreen = outsideX || outsideY;
+
+    if (isOutsideScreen) {
+      Entities.pop(entity);
+    }
   }
 }
