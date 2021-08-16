@@ -25,6 +25,8 @@ export class Game extends GameLoop {
 
     const player = new Player();
     Entities.push(player);
+
+    (window as any).player = player;
   }
 
   update(dt: number) {

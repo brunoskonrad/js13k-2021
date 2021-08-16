@@ -6,6 +6,7 @@ import { Rect } from "../components/Rect";
 import { Shooter } from "../components/Shooter";
 import { Controllable } from "../components/Controllable";
 import { vec2 } from "../Vector2";
+import { Velocity } from "../components/Velocity";
 
 export class Player extends Entity {
   constructor() {
@@ -16,5 +17,6 @@ export class Player extends Entity {
     this.addComponent(new Rect());
     this.addComponent(new Shooter(vec2(17, 7)));
     this.addComponent(new Controllable());
+    this.addComponent(new Velocity(100));
   }
 }

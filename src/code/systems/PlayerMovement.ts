@@ -4,12 +4,11 @@ import { Position } from "../components/Position";
 import { Entity } from "../entities/Base";
 import { System } from "./Base";
 import { Input } from "../Input";
-
-const VELOCITY = 100;
+import { Velocity } from "../components/Velocity";
 
 export class PlayerMovement extends System {
   constructor() {
-    super(["Position", "Controllable"]);
+    super(["Position", "Controllable", "Velocity"]);
   }
 
   execute(entity: Entity, dt: number) {
@@ -29,8 +28,9 @@ export class PlayerMovement extends System {
     }
 
     const position = entity.component<Position>("Position");
+    const velocity = entity.component<Velocity>("Velocity");
 
-    position.x += Math.round(VELOCITY * direction.x * dt);
-    position.y += Math.round(VELOCITY * direction.y * dt);
+    position.x += Math.round(velocity.value * direction.x * dt);
+    position.y += Math.round(velocity.value * direction.y * dt);
   }
 }
