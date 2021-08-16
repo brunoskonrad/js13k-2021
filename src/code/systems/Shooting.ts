@@ -1,3 +1,4 @@
+import { Direction } from "../components/Direction";
 import { Position } from "../components/Position";
 import { Shooter } from "../components/Shooter";
 import { Entities } from "../Entities";
@@ -9,7 +10,7 @@ import { System } from "./Base";
 
 export class Shooting extends System {
   constructor() {
-    super(["Shooter", "Position"]);
+    super(["Shooter", "Position", "Direction"]);
   }
 
   execute(entity: Entity) {
@@ -21,13 +22,14 @@ export class Shooting extends System {
   shoot: (entity: Entity) => void = throttle((entity: Entity) => {
     const playerPosition = entity.component<Position>("Position");
     const shooter = entity.component<Shooter>("Shooter");
+    const direction = entity.component<Direction>("Direction");
 
     const initialPosition = vec2(
       playerPosition.x + shooter.position.x,
       playerPosition.y + shooter.position.y
     );
 
-    const bullet = new Bullet(initialPosition, vec2(1, 0));
+    const bullet = new Bullet(initialPosition, direction.value);
 
     Entities.push(bullet);
   });
