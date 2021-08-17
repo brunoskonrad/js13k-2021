@@ -15,6 +15,7 @@ import { PhysicsWorld } from "./PhysicsWorld";
 import { CollisionDetection } from "./systems/CollisionDetection";
 import { ProjectileHit } from "./systems/ProjectileHit";
 import { CheckHealthSituation } from "./systems/CheckHealthSituation";
+import { Pirate } from "./entities/Pirate";
 
 export class Game extends GameLoop {
   systems: System[] = [
@@ -83,4 +84,8 @@ export class Game extends GameLoop {
 
 (window as any).spawn = () => {
   Entities.push(new Meteor());
+};
+
+(window as any).spawn2 = () => {
+  Entities.push(new Pirate());
 };

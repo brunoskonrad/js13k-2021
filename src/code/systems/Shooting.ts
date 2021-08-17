@@ -12,41 +12,41 @@ export class Shooting extends System {
   conmponents = [Shooter.name, Position.name, Direction.name];
 
   execute(entity: Entity) {
+    const shooter = entity.component<Shooter>(Shooter.name);
+
+    if (!shooter) {
+      return;
+    }
+
     if (Input.isActionPressed("shoot")) {
-      this.shoot(entity);
+      if (
+        !shooter.lastShotAt ||
+        Date.now() - shooter.lastShotAt >= shooter.delay
+      ) {
+        this.shoot(entity);
+      }
     }
   }
 
-  shoot: (entity: Entity) => void = throttle((entity: Entity) => {
+  shoot: (entity: Entity) => void = (entity: Entity) => {
     const playerPosition = entity.component<Position>(Position.name);
     const shooter = entity.component<Shooter>(Shooter.name);
     const direction = entity.component<Direction>(Direction.name);
+
+    shooter.lastShotAt = Date.now();
 
     const initialPosition = vec2(
       playerPosition.x + shooter.position.x,
       playerPosition.y + shooter.position.y
     );
 
-    const bullet = new Bullet(initialPosition, direction.value);
+    const bullet = new Bullet(
+      initialPosition,
+      direction.value,
+      shooter.layer,
+      shooter.color
+    );
 
     Entities.push(bullet);
-  });
-}
-
-function throttle(callback) {
-  var waiting = false; // Initially, we're not waiting
-  return function (entity: Entity) {
-    const shooter = entity.component<Shooter>(Shooter.name);
-
-    // We return a throttled function
-    if (!waiting) {
-      // If we're not waiting
-      callback(entity); // Execute users function
-      waiting = true; // Prevent future invocations
-      setTimeout(function () {
-        // After a period of time
-        waiting = false; // And allow future invocations
-      }, shooter.delay);
-    }
   };
 }

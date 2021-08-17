@@ -4,26 +4,24 @@ import { Position } from "../components/Position";
 import { Size } from "../components/Size";
 import { Rect } from "../components/Rect";
 import { Shooter } from "../components/Shooter";
-import { Controllable } from "../components/Controllable";
 import { vec2 } from "../Vector2";
 import { Velocity } from "../components/Velocity";
 import { Direction } from "../components/Direction";
 import { Collider } from "../components/Collider";
 import { Health } from "../components/Health";
 
-export class Player extends Entity {
+export class Pirate extends Entity {
   constructor() {
     super();
 
-    this.addComponent(new Position(20, 100));
+    this.addComponent(new Position(320, 100));
     this.addComponent(new Size(16, 16));
-    this.addComponent(new Rect());
-    this.addComponent(new Shooter(vec2(17, 7), 500, 2, "#f00"));
-    this.addComponent(new Controllable());
+    this.addComponent(new Rect("#2423ff"));
+    this.addComponent(new Shooter(vec2(-1, 7), 500, 5, "#ff0"));
     this.addComponent(new Velocity(100));
-    this.addComponent(new Direction(vec2(1, 0)));
+    this.addComponent(new Direction(vec2(-1, 0)));
 
-    this.addComponent(new Collider(1));
-    this.addComponent(new Health(3));
+    this.addComponent(new Collider(4));
+    this.addComponent(new Health(2));
   }
 }

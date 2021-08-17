@@ -35,3 +35,5 @@ export class Entities {
     return Object.keys(this.objects).length;
   }
 }
+
+(window as any).Entities = Entities;
