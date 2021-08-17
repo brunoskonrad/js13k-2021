@@ -12,16 +12,16 @@ import { Health } from "../components/Health";
 
 export class Pirate extends Entity {
   constructor() {
-    super();
+    super([
+      new Position(320, 100),
+      new Size(16, 16),
+      new Rect("#2423ff"),
+      new Shooter(vec2(-1, 7), 500, 5, "#ff0"),
+      new Velocity(100),
+      new Direction(vec2(-1, 0)),
 
-    this.add(new Position(320, 100));
-    this.add(new Size(16, 16));
-    this.add(new Rect("#2423ff"));
-    this.add(new Shooter(vec2(-1, 7), 500, 5, "#ff0"));
-    this.add(new Velocity(100));
-    this.add(new Direction(vec2(-1, 0)));
-
-    this.add(new Collider(4));
-    this.add(new Health(2));
+      new Collider(4),
+      new Health(2),
+    ]);
   }
 }

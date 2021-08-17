@@ -9,16 +9,21 @@ import { Vector2 } from "../Vector2";
 import { Entity } from "./Base";
 
 export class Bullet extends Entity {
-  constructor(initialPosition: Vector2, direction: Vector2, layer: number, color = "#f00") {
-    super();
+  constructor(
+    initialPosition: Vector2,
+    direction: Vector2,
+    layer: number,
+    color = "#f00"
+  ) {
+    super([
+      new Position(initialPosition.x, initialPosition.y),
+      new Size(8, 3),
+      new Rect(color),
+      new Projectile(1),
+      new Direction(direction),
+      new Velocity(200),
 
-    this.add(new Position(initialPosition.x, initialPosition.y));
-    this.add(new Size(8, 3));
-    this.add(new Rect(color));
-    this.add(new Projectile(1));
-    this.add(new Direction(direction));
-    this.add(new Velocity(200));
-
-    this.add(new Collider(layer));
+      new Collider(layer),
+    ]);
   }
 }

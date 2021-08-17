@@ -6,21 +6,22 @@ let entities = 0;
 
 export class Entity {
   c: { [key: string]: Component } = {};
-  num: Number;
+  id: string;
 
-  constructor() {
-    this.num = entities++;
+  constructor(components: Component[]) {
+    this.id = `${this.constructor.name}_${entities++}`;
+
+    components.forEach((component) => this.a(component));
   }
 
   component<T extends Component>(name: string): SearchByName<T> {
     return this.c[name] as SearchByName<T>;
   }
 
-  add(c: Component) {
-    this.c[c.constructor.name] = c;
-  }
-
-  get id(): string {
-    return `${this.constructor.name}_${this.num}`;
+  /**
+   * Add a new component to the entity
+   */
+  a(component: Component) {
+    this.c[component.constructor.name] = component;
   }
 }

@@ -11,16 +11,16 @@ import { Entity } from "./Base";
 
 export class Meteor extends Entity {
   constructor() {
-    super();
+    super([
+      new Position(380, 100),
+      new Size(20, 20),
+      new Projectile(1),
+      new Direction(vec2(-1, 0)),
+      new Rect("#0ff"),
+      new Velocity(150),
 
-    this.add(new Position(380, 100));
-    this.add(new Size(20, 20));
-    this.add(new Projectile(1));
-    this.add(new Direction(vec2(-1, 0)));
-    this.add(new Rect("#0ff"));
-    this.add(new Velocity(150));
-
-    this.add(new Collider(3));
-    this.add(new Health(1));
+      new Collider(3),
+      new Health(1),
+    ]);
   }
 }
