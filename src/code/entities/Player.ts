@@ -15,15 +15,15 @@ export class Player extends Entity {
   constructor() {
     super();
 
-    this.addComponent(new Position(20, 100));
-    this.addComponent(new Size(16, 16));
-    this.addComponent(new Rect());
-    this.addComponent(new Shooter(vec2(17, 7), 500, 2, "#f00"));
-    this.addComponent(new Controllable());
-    this.addComponent(new Velocity(100));
-    this.addComponent(new Direction(vec2(1, 0)));
+    this.add(new Position(20, 100));
+    this.add(new Size(16, 16));
+    this.add(new Rect());
+    this.add(new Shooter(vec2(17, 7), 500, 2, "#f00"));
+    this.add(new Controllable());
+    this.add(new Velocity(100));
+    this.add(new Direction(vec2(1, 0)));
 
-    this.addComponent(new Collider(1));
-    this.addComponent(new Health(3));
+    this.add(new Collider(1));
+    this.add(new Health(3));
   }
 }

@@ -12,13 +12,13 @@ export class Bullet extends Entity {
   constructor(initialPosition: Vector2, direction: Vector2, layer: number, color = "#f00") {
     super();
 
-    this.addComponent(new Position(initialPosition.x, initialPosition.y));
-    this.addComponent(new Size(8, 3));
-    this.addComponent(new Rect(color));
-    this.addComponent(new Projectile(1));
-    this.addComponent(new Direction(direction));
-    this.addComponent(new Velocity(200));
+    this.add(new Position(initialPosition.x, initialPosition.y));
+    this.add(new Size(8, 3));
+    this.add(new Rect(color));
+    this.add(new Projectile(1));
+    this.add(new Direction(direction));
+    this.add(new Velocity(200));
 
-    this.addComponent(new Collider(layer));
+    this.add(new Collider(layer));
   }
 }

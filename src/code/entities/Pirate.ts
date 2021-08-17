@@ -14,14 +14,14 @@ export class Pirate extends Entity {
   constructor() {
     super();
 
-    this.addComponent(new Position(320, 100));
-    this.addComponent(new Size(16, 16));
-    this.addComponent(new Rect("#2423ff"));
-    this.addComponent(new Shooter(vec2(-1, 7), 500, 5, "#ff0"));
-    this.addComponent(new Velocity(100));
-    this.addComponent(new Direction(vec2(-1, 0)));
+    this.add(new Position(320, 100));
+    this.add(new Size(16, 16));
+    this.add(new Rect("#2423ff"));
+    this.add(new Shooter(vec2(-1, 7), 500, 5, "#ff0"));
+    this.add(new Velocity(100));
+    this.add(new Direction(vec2(-1, 0)));
 
-    this.addComponent(new Collider(4));
-    this.addComponent(new Health(2));
+    this.add(new Collider(4));
+    this.add(new Health(2));
   }
 }

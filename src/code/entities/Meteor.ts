@@ -13,14 +13,14 @@ export class Meteor extends Entity {
   constructor() {
     super();
 
-    this.addComponent(new Position(380, 100));
-    this.addComponent(new Size(20, 20));
-    this.addComponent(new Projectile(1));
-    this.addComponent(new Direction(vec2(-1, 0)));
-    this.addComponent(new Rect("#0ff"));
-    this.addComponent(new Velocity(150));
+    this.add(new Position(380, 100));
+    this.add(new Size(20, 20));
+    this.add(new Projectile(1));
+    this.add(new Direction(vec2(-1, 0)));
+    this.add(new Rect("#0ff"));
+    this.add(new Velocity(150));
 
-    this.addComponent(new Collider(3));
-    this.addComponent(new Health(1));
+    this.add(new Collider(3));
+    this.add(new Health(1));
   }
 }

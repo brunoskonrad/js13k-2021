@@ -9,7 +9,7 @@ import { vec2 } from "../Vector2";
 import { System } from "./Base";
 
 export class Shooting extends System {
-  conmponents = [Shooter.name, Position.name, Direction.name];
+  components = [Shooter.name, Position.name, Direction.name];
 
   execute(entity: Entity) {
     const shooter = entity.component<Shooter>(Shooter.name);

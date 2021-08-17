@@ -1,5 +1,5 @@
 export class GameLoop {
-  animationFrameRef: number;
+  frameRef: number;
 
   lastTime: number;
   lag: number = 0.0;
@@ -7,13 +7,9 @@ export class GameLoop {
 
   static MS_UPDATE_RATE = 1 / 60;
 
-  update(_deltaTime: number) {
-    throw new Error("Must implement `update(deltaTime: number): void`");
-  }
+  update(_deltaTime: number) {}
 
-  render() {
-    throw new Error("Must implement `render(): void`");
-  }
+  render() {}
 
   start = () => {
     this.lastTime = Date.now();
@@ -22,7 +18,7 @@ export class GameLoop {
   };
 
   stop = () => {
-    cancelAnimationFrame(this.animationFrameRef);
+    cancelAnimationFrame(this.frameRef);
     this.isRunning = false;
   };
 
@@ -41,6 +37,6 @@ export class GameLoop {
     }
 
     this.lastTime = current;
-    this.animationFrameRef = requestAnimationFrame(this.tick);
+    this.frameRef = requestAnimationFrame(this.tick);
   };
 }

@@ -9,12 +9,10 @@ export class System {
     }
   }
 
-  execute(_entity: Entity, _dt: number) {
-    throw "Implement me";
-  }
+  execute(_entity: Entity, _dt: number) {}
 
   private valid(entity: Entity) {
-    const components = this.components.filter((c) => !!entity.components[c]);
+    const components = this.components.filter((c) => !!entity.c[c]);
 
     return components.length === this.components.length;
   }
