@@ -8,6 +8,8 @@ import { Controllable } from "../components/Controllable";
 import { vec2 } from "../Vector2";
 import { Velocity } from "../components/Velocity";
 import { Direction } from "../components/Direction";
+import { Collider } from "../components/Collider";
+import { Health } from "../components/Health";
 
 export class Player extends Entity {
   constructor() {
@@ -20,5 +22,8 @@ export class Player extends Entity {
     this.addComponent(new Controllable());
     this.addComponent(new Velocity(100));
     this.addComponent(new Direction(vec2(1, 0)));
+
+    this.addComponent(new Collider(1));
+    this.addComponent(new Health(3));
   }
 }

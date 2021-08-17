@@ -11,12 +11,19 @@ import { ProjectileMovement } from "./systems/ProjectileMovement";
 import { Meteor } from "./entities/Meteor";
 import { Entity } from "./entities/Base";
 import { Collider } from "./components/Collider";
+import { PhysicsWorld } from "./PhysicsWorld";
+import { CollisionDetection } from "./systems/CollisionDetection";
+import { ProjectileHit } from "./systems/ProjectileHit";
+import { CheckHealthSituation } from "./systems/CheckHealthSituation";
 
 export class Game extends GameLoop {
   systems: System[] = [
+    new CollisionDetection(),
     new PlayerMovement(),
     new Shooting(),
     new ProjectileMovement(),
+    new ProjectileHit(),
+    new CheckHealthSituation(),
   ];
   renderSystems: System[] = [new RenderRect()];
 
@@ -26,18 +33,13 @@ export class Game extends GameLoop {
     Input.init();
     canvas.init();
 
-    const player = new Player();
-    Entities.push(player);
-
-    (window as any).player = player;
-
     document.addEventListener("entities:push", (event) => {
       const { detail } = event as any;
       const entity = detail as Entity;
 
       const collider = entity.component<Collider>(Collider.name);
       if (collider) {
-        // add to physics world
+        PhysicsWorld.push(entity.id, collider.layer);
       }
     });
 
@@ -47,9 +49,14 @@ export class Game extends GameLoop {
 
       const collider = entity.component<Collider>(Collider.name);
       if (collider) {
-        // removes from physics world
+        PhysicsWorld.pop(entity.id, collider.layer);
       }
     });
+
+    const player = new Player();
+    Entities.push(player);
+
+    (window as any).player = player;
   }
 
   update(dt: number) {
@@ -70,6 +77,7 @@ export class Game extends GameLoop {
     });
 
     canvas.context.fillText(`Entities: ${Entities.count}`, 0, 20);
+    canvas.context.fillText(`Physics world: ${PhysicsWorld.count}`, 0, 40);
   }
 }
 

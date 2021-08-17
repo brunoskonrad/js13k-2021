@@ -1,3 +1,4 @@
+import { Collider } from "../components/Collider";
 import { Direction } from "../components/Direction";
 import { Position } from "../components/Position";
 import { Projectile } from "../components/Projectile";
@@ -13,9 +14,11 @@ export class Meteor extends Entity {
 
     this.addComponent(new Position(380, 100));
     this.addComponent(new Size(20, 20));
-    this.addComponent(new Projectile());
+    this.addComponent(new Projectile(1));
     this.addComponent(new Direction(vec2(-1, 0)));
     this.addComponent(new Rect("#0ff"));
     this.addComponent(new Velocity(150));
+
+    this.addComponent(new Collider(3));
   }
 }
