@@ -9,9 +9,7 @@ import { vec2 } from "../Vector2";
 import { System } from "./Base";
 
 export class Shooting extends System {
-  constructor() {
-    super(["Shooter", "Position", "Direction"]);
-  }
+  conmponents = [Shooter.name, Position.name, Direction.name];
 
   execute(entity: Entity) {
     if (Input.isActionPressed("shoot")) {
@@ -20,9 +18,9 @@ export class Shooting extends System {
   }
 
   shoot: (entity: Entity) => void = throttle((entity: Entity) => {
-    const playerPosition = entity.component<Position>("Position");
-    const shooter = entity.component<Shooter>("Shooter");
-    const direction = entity.component<Direction>("Direction");
+    const playerPosition = entity.component<Position>(Position.name);
+    const shooter = entity.component<Shooter>(Shooter.name);
+    const direction = entity.component<Direction>(Direction.name);
 
     const initialPosition = vec2(
       playerPosition.x + shooter.position.x,
@@ -38,7 +36,7 @@ export class Shooting extends System {
 function throttle(callback) {
   var waiting = false; // Initially, we're not waiting
   return function (entity: Entity) {
-    const shooter = entity.component<Shooter>("Shooter");
+    const shooter = entity.component<Shooter>(Shooter.name);
 
     // We return a throttled function
     if (!waiting) {

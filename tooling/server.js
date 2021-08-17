@@ -89,7 +89,7 @@ function getClientLibs() {
   const onlyCssFiles = (fileName) => path.extname(fileName) === ".css";
   const cssFiles = clientLibs.filter(onlyCssFiles);
 
-  return { jsFiles, cssFiles }
+  return { jsFiles, cssFiles };
 }
 
 function watchSourceCodeChanges() {
@@ -97,7 +97,7 @@ function watchSourceCodeChanges() {
 
   async function buildFile(fileName) {
     if (!hasDevFolder()) {
-      console.log("🙈 No dev folder here, let me create it very quickly...")
+      console.log("🙈 No dev folder here, let me create it very quickly...");
       setupDevEnvironment();
       console.log("🎉 Done!");
       return;
@@ -128,6 +128,7 @@ function watchSourceCodeChanges() {
 
 setupDevEnvironment();
 app.use(express.static(DEV_FOLDER));
+app.use("/dist", express.static("./dist"));
 
 app.get("/api/impact-changes", async (_req, res) => {
   await buildCurrentBranch();

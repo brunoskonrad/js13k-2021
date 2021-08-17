@@ -1,5 +1,1 @@
-export class Component {
-  get name() {
-    return this.constructor.name;
-  }
-}
+export class Component {}

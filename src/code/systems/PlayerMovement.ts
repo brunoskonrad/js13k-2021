@@ -1,15 +1,15 @@
 import { vec2 } from "../Vector2";
 
-import { Position } from "../components/Position";
 import { Entity } from "../entities/Base";
 import { System } from "./Base";
 import { Input } from "../Input";
+
+import { Position } from "../components/Position";
+import { Controllable } from "../components/Controllable";
 import { Velocity } from "../components/Velocity";
 
 export class PlayerMovement extends System {
-  constructor() {
-    super(["Position", "Controllable", "Velocity"]);
-  }
+  components = [Position.name, Controllable.name, Velocity.name];
 
   execute(entity: Entity, dt: number) {
     let direction = vec2(0, 0);
@@ -27,8 +27,8 @@ export class PlayerMovement extends System {
       direction = vec2.sum(direction, vec2(0, -1));
     }
 
-    const position = entity.component<Position>("Position");
-    const velocity = entity.component<Velocity>("Velocity");
+    const position = entity.component<Position>(Position.name);
+    const velocity = entity.component<Velocity>(Velocity.name);
 
     position.x += Math.round(velocity.value * direction.x * dt);
     position.y += Math.round(velocity.value * direction.y * dt);

@@ -35,7 +35,7 @@ export class Game extends GameLoop {
       const { detail } = event as any;
       const entity = detail as Entity;
 
-      const collider = entity.component<Collider>("Collider")
+      const collider = entity.component<Collider>(Collider.name);
       if (collider) {
         // add to physics world
       }
@@ -45,7 +45,7 @@ export class Game extends GameLoop {
       const { detail } = event as any;
       const entity = detail as Entity;
 
-      const collider = entity.component<Collider>("Collider")
+      const collider = entity.component<Collider>(Collider.name);
       if (collider) {
         // removes from physics world
       }

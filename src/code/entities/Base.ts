@@ -17,7 +17,7 @@ export class Entity {
   }
 
   addComponent(c: Component) {
-    this.components[c.name] = c;
+    this.components[c.constructor.name] = c;
   }
 
   get id(): string {

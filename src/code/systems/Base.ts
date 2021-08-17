@@ -1,14 +1,7 @@
 import { Entity } from "../entities/Base";
 
 export class System {
-  components: string[];
-
-  constructor(c) {
-    if (c.length === 0) {
-      throw "Need components";
-    }
-    this.components = c;
-  }
+  components: string[] = [];
 
   process(entity: Entity, dt: number) {
     if (this.valid(entity)) {
