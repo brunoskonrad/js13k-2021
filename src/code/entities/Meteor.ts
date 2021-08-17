@@ -5,6 +5,7 @@ import { Projectile } from "../components/Projectile";
 import { Rect } from "../components/Rect";
 import { Size } from "../components/Size";
 import { Velocity } from "../components/Velocity";
+import { Health } from "../components/Health";
 import { vec2 } from "../Vector2";
 import { Entity } from "./Base";
 
@@ -20,5 +21,6 @@ export class Meteor extends Entity {
     this.addComponent(new Velocity(150));
 
     this.addComponent(new Collider(3));
+    this.addComponent(new Health(1));
   }
 }

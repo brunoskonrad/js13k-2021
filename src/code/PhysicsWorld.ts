@@ -35,8 +35,8 @@ type PhysicsLayers = { [key: number]: { [key: string]: boolean } };
 export class PhysicsWorld {
   static rules: Layers = {
     1: [3, 4, 5],
-    2: [],
-    3: [1, 2, 4, 5],
+    2: [3],
+    3: [1, 4, 5],
     4: [1, 2, 3],
     5: [],
   };
