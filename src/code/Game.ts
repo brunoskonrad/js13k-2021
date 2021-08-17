@@ -16,6 +16,7 @@ import { CollisionDetection } from "./systems/CollisionDetection";
 import { ProjectileHit } from "./systems/ProjectileHit";
 import { CheckHealthSituation } from "./systems/CheckHealthSituation";
 import { Pirate } from "./entities/Pirate";
+import { emitter } from "./EventEmitter";
 
 export class Game extends GameLoop {
   systems: System[] = [
@@ -34,20 +35,14 @@ export class Game extends GameLoop {
     Input.init();
     canvas.init();
 
-    document.addEventListener("entities:push", (event) => {
-      const { detail } = event as any;
-      const entity = detail as Entity;
-
+    emitter.on("_e:push", (entity: Entity) => {
       const collider = entity.component<Collider>(Collider.name);
       if (collider) {
         PhysicsWorld.push(entity.id, collider.layer);
       }
     });
 
-    document.addEventListener("entities:pop", (event) => {
-      const { detail } = event as any;
-      const entity = detail as Entity;
-
+    emitter.on("_e:pop", (entity: Entity) => {
       const collider = entity.component<Collider>(Collider.name);
       if (collider) {
         PhysicsWorld.pop(entity.id, collider.layer);

@@ -1,38 +1,36 @@
 import { Entity } from "./entities/Base";
+import { emitter } from "./EventEmitter";
 
 export class Entities {
-  private static objects: { [key: string]: Entity } = {};
+  // Object to store entities
+  private static o: { [key: string]: Entity } = {};
 
   static get(id: string): Entity | undefined {
-    return this.objects[id];
+    return this.o[id];
   }
 
   static push(entity: Entity) {
-    this.objects[entity.id] = entity;
+    this.o[entity.id] = entity;
 
-    document.dispatchEvent(
-      new CustomEvent("entities:push", { detail: entity })
-    );
+    emitter.emit("_e:push", entity);
   }
 
   static pop(entity: Entity) {
-    if (!!this.objects[entity.id]) {
-      document.dispatchEvent(
-        new CustomEvent("entities:pop", { detail: entity })
-      );
+    if (!!this.o[entity.id]) {
+      emitter.emit("_e:pop", entity);
     }
 
-    delete this.objects[entity.id];
+    delete this.o[entity.id];
   }
 
   static forEach(callback: (entity: Entity) => void) {
-    Object.keys(this.objects).forEach((key) => {
-      callback(this.objects[key]);
+    Object.keys(this.o).forEach((key) => {
+      callback(this.o[key]);
     });
   }
 
   static get count(): number {
-    return Object.keys(this.objects).length;
+    return Object.keys(this.o).length;
   }
 }
 
