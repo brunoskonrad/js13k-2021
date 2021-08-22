@@ -7,12 +7,12 @@ import { Size } from "../components/Size";
 import { Rect } from "../components/Rect";
 
 export class RenderRect extends System {
-  components = [Position.name, Size.name, Rect.name];
+  components = [Position, Size, Rect];
 
   execute(entity: Entity) {
-    const position = entity.component<Position>(Position.name);
-    const size = entity.component<Size>(Size.name);
-    const rect = entity.component<Rect>(Rect.name);
+    const position = entity.component<Position>(Position);
+    const size = entity.component<Size>(Size);
+    const rect = entity.component<Rect>(Rect);
 
     canvas.context.save();
 

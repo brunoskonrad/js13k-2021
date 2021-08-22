@@ -14,8 +14,8 @@ export class Entity {
     components.forEach((component) => this.a(component));
   }
 
-  component<T extends Component>(name: string): SearchByName<T> {
-    return this.c[name] as SearchByName<T>;
+  component<T extends Component>(component: Function): SearchByName<T> {
+    return this.c[component.name] as SearchByName<T>;
   }
 
   /**

@@ -9,10 +9,10 @@ import { vec2 } from "../Vector2";
 import { System } from "./Base";
 
 export class Shooting extends System {
-  components = [Shooter.name, Position.name, Direction.name];
+  components = [Shooter, Position, Direction];
 
   execute(entity: Entity) {
-    const shooter = entity.component<Shooter>(Shooter.name);
+    const shooter = entity.component<Shooter>(Shooter);
 
     if (!shooter) {
       return;
@@ -29,9 +29,9 @@ export class Shooting extends System {
   }
 
   shoot: (entity: Entity) => void = (entity: Entity) => {
-    const playerPosition = entity.component<Position>(Position.name);
-    const shooter = entity.component<Shooter>(Shooter.name);
-    const direction = entity.component<Direction>(Direction.name);
+    const playerPosition = entity.component<Position>(Position);
+    const shooter = entity.component<Shooter>(Shooter);
+    const direction = entity.component<Direction>(Direction);
 
     shooter.lastShotAt = Date.now();
 

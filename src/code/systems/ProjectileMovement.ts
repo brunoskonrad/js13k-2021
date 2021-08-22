@@ -10,19 +10,13 @@ import { vec2 } from "../Vector2";
 import { System } from "./Base";
 
 export class ProjectileMovement extends System {
-  components = [
-    Projectile.name,
-    Direction.name,
-    Position.name,
-    Size.name,
-    Velocity.name,
-  ];
+  components = [Projectile, Direction, Position, Size, Velocity];
 
   execute(entity: Entity, dt: number) {
-    const position = entity.component<Position>(Position.name);
-    const direction = entity.component<Direction>(Direction.name);
-    const velocity = entity.component<Velocity>(Velocity.name);
-    const size = entity.component<Size>(Size.name);
+    const position = entity.component<Position>(Position);
+    const direction = entity.component<Direction>(Direction);
+    const velocity = entity.component<Velocity>(Velocity);
+    const size = entity.component<Size>(Size);
 
     const change = vec2(
       dt * direction.value.x * velocity.value,

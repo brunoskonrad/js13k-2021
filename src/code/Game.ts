@@ -36,14 +36,14 @@ export class Game extends GameLoop {
     canvas.init();
 
     emitter.on("_e:push", (entity: Entity) => {
-      const collider = entity.component<Collider>(Collider.name);
+      const collider = entity.component<Collider>(Collider);
       if (collider) {
         PhysicsWorld.push(entity.id, collider.layer);
       }
     });
 
     emitter.on("_e:pop", (entity: Entity) => {
-      const collider = entity.component<Collider>(Collider.name);
+      const collider = entity.component<Collider>(Collider);
       if (collider) {
         PhysicsWorld.pop(entity.id, collider.layer);
       }
@@ -72,6 +72,7 @@ export class Game extends GameLoop {
       });
     });
 
+    canvas.context.fillStyle = "#fedede";
     canvas.context.fillText(`Entities: ${Entities.count}`, 0, 20);
     canvas.context.fillText(`Physics world: ${PhysicsWorld.count}`, 0, 40);
   }

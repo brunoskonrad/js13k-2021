@@ -63,7 +63,7 @@ export class PhysicsWorld {
     didCollide: (collision: { origin: Entity; target: Entity }) => void,
     didNotCollide: (collision: { origin: Entity; target: Entity }) => void
   ) {
-    const { layer } = entity.component<Collider>(Collider.name);
+    const { layer } = entity.component<Collider>(Collider);
     const ogCollider = createCollidableEntity(entity);
 
     const rules = this.rules[layer];
@@ -111,8 +111,8 @@ export class PhysicsWorld {
 }
 
 function createCollidableEntity(entity: Entity): CollidableEntity {
-  const { width, height } = entity.component<Size>(Size.name);
-  const position = entity.component<Position>(Position.name);
+  const { width, height } = entity.component<Size>(Size);
+  const position = entity.component<Position>(Position);
 
   return {
     position,

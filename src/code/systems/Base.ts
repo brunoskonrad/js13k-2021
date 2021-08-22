@@ -1,7 +1,7 @@
 import { Entity } from "../entities/Base";
 
 export class System {
-  components: string[] = [];
+  components: Function[] = [];
 
   process(entity: Entity, dt: number) {
     if (this.valid(entity)) {
@@ -12,7 +12,7 @@ export class System {
   execute(_entity: Entity, _dt: number) {}
 
   private valid(entity: Entity) {
-    const components = this.components.filter((c) => !!entity.c[c]);
+    const components = this.components.filter((c) => !!entity.c[c.name]);
 
     return components.length === this.components.length;
   }

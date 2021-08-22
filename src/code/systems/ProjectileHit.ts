@@ -6,11 +6,11 @@ import { Entity } from "../entities/Base";
 import { System } from "./Base";
 
 export class ProjectileHit extends System {
-  components = [Collider.name, Projectile.name];
+  components = [Collider, Projectile];
 
   execute(entity: Entity) {
-    const collider = entity.component<Collider>(Collider.name);
-    const projectile = entity.component<Projectile>(Projectile.name);
+    const collider = entity.component<Collider>(Collider);
+    const projectile = entity.component<Projectile>(Projectile);
     const collidedObjects = Object.keys(collider.collisions);
 
     if (collidedObjects.length > 0) {
@@ -29,7 +29,7 @@ export class ProjectileHit extends System {
 }
 
 function damage(entity: Entity, hitDamage: number) {
-  const health = entity.component<Health>(Health.name);
+  const health = entity.component<Health>(Health);
 
   if (health) {
     health.value -= hitDamage;

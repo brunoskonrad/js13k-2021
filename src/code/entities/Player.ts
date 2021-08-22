@@ -16,7 +16,7 @@ export class Player extends Entity {
     super([
       new Position(20, 100),
       new Size(16, 16),
-      new Rect(),
+      new Rect("#fedede"),
       new Shooter(vec2(17, 7), 500, 2, "#f00"),
       new Controllable(),
       new Velocity(100),
